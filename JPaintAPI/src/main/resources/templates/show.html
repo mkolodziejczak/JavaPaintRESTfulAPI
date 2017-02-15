@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JPaint</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getImage()
+        {
+
+            $.ajax({
+                url: "http://localhost:8080/mysql/images/",
+                type: 'GET',
+                success: function(res) {
+                    var image = new Image();
+                    image.src = 'data:image/png;base64,'+res["byteArray"];
+                    document.getElementById("imageContainer").innerHTML="";
+                    document.getElementById("imageContainer").appendChild(image);
+                }
+            });
+
+
+        }
+        var t=setInterval(getImage,2000);
+    </script>
+</head>
+<body>
+
+
+<div id="imageContainer">
+
+</div>
+</body>
+</html>
